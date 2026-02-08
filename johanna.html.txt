@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Für Johanna ??</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(
+                to top,
+                #8b0000,
+                #c1121f,
+                #ff4d6d,
+                #ff9a9e,
+                #ffd6a5
+            );
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+            animation: sunrise 8s ease-in-out forwards;
+        }
+
+        @keyframes sunrise {
+            from { filter: brightness(0.6); }
+            to { filter: brightness(1); }
+        }
+
+        .card {
+            background: rgba(255,255,255,0.92);
+            padding: 40px 50px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            max-width: 450px;
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #b11226;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.15rem;
+            margin: 14px 0;
+            color: #333;
+        }
+
+        button {
+            padding: 12px 28px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 12px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .yes {
+            background: #c1121f;
+            color: white;
+        }
+
+        .no {
+            background: #eee;
+            position: absolute;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255,255,255,0.9);
+            animation: float 7s linear infinite;
+            font-size: 22px;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 0; }
+            15% { opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="card">
+        <h1>Johanna ??</h1>
+
+        <p>So wie die Sonne langsam aufgeht,</p>
+        <p>hast du mein Herz heller gemacht.</p>
+        <p>Mit jedem Gedanken an dich</p>
+        <p>fühlt sich alles ein bisschen wärmer an ??</p>
+
+        <p><strong>Willst du mein Valentin sein?</strong></p>
+
+        <button class="yes" onclick="yesClicked()">Ja ??</button>
+        <button class="no" id="noBtn">Nein ??</button>
+    </div>
+
+    <script>
+        function yesClicked() {
+            document.getElementById("card").innerHTML = `
+                <h1>?? Danke, Johanna ??</h1>
+                <p>Du hast mein Herz zum Strahlen gebracht.</p>
+                <p>Ich freue mich auf jeden Moment mit dir ??</p>
+                <p>Dieser Valentin gehört nur uns ??</p>
+            `;
+        }
+
+        const noBtn = document.getElementById("noBtn");
+        noBtn.addEventListener("mouseover", () => {
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 60);
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+        });
+
+        // schwebende Herzen
+        setInterval(() => {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "??";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (18 + Math.random() * 18) + "px";
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 7000);
+        }, 600);
+    </script>
+
+</body>
+</html>
